@@ -1,0 +1,46 @@
+{
+  "name": "minitype",
+  "version": "0.1.0",
+  "description": "Essential, extensible Javascript types",
+  "engines": {
+    "node": "14"
+  },
+  "main": "lib/index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --recursive",
+    "standardize": "palmito -i '**/*.tgz' -i '**/docs/**' -i '**/doc/***'",
+    "doc": "jsdoc --destination docs --configure doc/jsdoc.json lib doc/jsdoc_home.md",
+    "doc-server": "http-server docs",
+    "doc-clean": "rm -rf docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin-leptons/minitype.git"
+  },
+  "keywords": [
+    "essential",
+    "extensible",
+    "js",
+    "types",
+    "result",
+    "error",
+    "handling"
+  ],
+  "author": "Kevin Leptons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevin-leptons/minitype/issues"
+  },
+  "homepage": "https://github.com/kevin-leptons/minitype#readme",
+  "devDependencies": {
+    "docdash": "^1.2.0",
+    "http-server": "^14.1.0",
+    "jsdoc": "^3.6.7",
+    "mocha": "^9.1.4"
+  }
+}
