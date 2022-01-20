@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>time.js - Documentation</title>
+    <title>number.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">time.js</h1>
+    <h1 class="page-title">number.js</h1>
     
 
     
@@ -48,13 +48,16 @@
 
 const {Result} = require('./result')
 const {Heximal} = require('./string')
-const {validateUInt} = require('./validator')
+const {
+    validateUInt, validateHeximal, inspectHeximal, validateInstance
+} = require('./validator')
 const {heximalToUInt} = require('./formatter')
 
-class Timestamp {
+/**
+ * Unsigned integer number, 53 bits.
+ */
+class UInt {
     /**
-     * Timestamp in miliseconds.
-     *
      * @type {number}
      */
     get value() {
@@ -64,74 +67,95 @@ class Timestamp {
     /**
      * **Tags:** NO_INPUT_VALIDATION.
      *
-     * @param {number} value - Timestamp in miliseconds, unsigned
-     * integer number, 53 bits.
+     * @param {number} value
      */
     constructor(value) {
         this._value = value
     }
 
     /**
-     * Make a timestamp that points to current time.
      *
-     * @return {Timestamp}
+     * @param {number} value
+     * @return {Result&lt;string, UInt>}
      */
-    static now() {
-        let miliseconds = Date.now()
-        return new Timestamp(miliseconds)
+    static fromNumber(value) {
+        let r1 = validateUInt(value)
+        if (r1.error) {
+            return r1
+        }
+        let data = new UInt(value)
+        return Result.ok(data)
+    }
+
+    /**
+     * 53 bits all set heximal: `0x1FFFFFFFFFFFFF`.
+     *
+     * @param {Heximal} value
+     * @return {Result&lt;UInt>}
+     */
+    static fromHeximal(value) {
+        let r1 = heximalToUInt(value)
+        if (r1.error) {
+            return r1
+        }
+        let {data: number} = r1
+        let data = new UInt(number)
+        return Result.ok(data)
+    }
+}
+
+class UInt16 {
+    /**
+     * @type {number}
+     */
+    get value() {
+        return this._value
+    }
+
+    /**
+     * **Tags:** NO_INPUT_VALIDATION.
+     *
+     * @param {value} value - Unsigned integer number, 16 bits.
+     */
+    constructor(value) {
+        this._value = value
     }
 
     /**
      *
      * @param {number} value
-     * @return {Result&lt;string, Timestamp>}
+     * @return {Result&lt;string, UInt16>}
      */
-    static fromMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
+    static fromNumber(value) {
+        if (!Number.isInteger(value) || value &lt; 0 || value > 0xffff) {
+            return Result.typeError('expect unsigned integer 16 bits')
         }
-        return new Timestamp(value)
-    }
-
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;string, Timestamp>}
-     */
-    static fromSeconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 1000 * value
-        let r2 = validateUInt(miliseconds)
-        if (r2.error) {
-            return r2
-        }
-        let data = new Timestamp(miliseconds)
+        let data = new UInt16(value)
         return Result.ok(data)
     }
 
     /**
      *
      * @param {Heximal} value
-     * @return {Result&lt;Timestamp>}
+     * @return {Result&lt;UInt16>}
      */
-    static fromHeximalSeconds(value) {
-        let r1 = heximalToUInt(value)
+    static fromHeximal(value) {
+        let r1 = validateHeximal(value)
         if (r1.error) {
             return r1
         }
-        let {data: seconds} = r1
-        return Timestamp.fromSeconds(seconds)
+        let [length] = inspectHeximal(value)
+        if (length > 4) {
+            return Result.typeError('heximal overflow 16 bits')
+        }
+        let number = Number(value, 16)
+        let data = new UInt16(number)
+        return Result.ok(data)
     }
 }
 
-class Timespan {
+class UInt32 {
     /**
-     * Timespan in miliseconds.
-     *
      * @type {number}
      */
     get value() {
@@ -141,142 +165,279 @@ class Timespan {
     /**
      * **Tags:** NO_INPUT_VALIDATION.
      *
-     * @param {value} value - Timespan in miliseconds, unsigned
-     * integer number, 53 bits.
+     * @param {value} value - Unsigned integer number, 32 bits.
      */
     constructor(value) {
         this._value = value
     }
 
     /**
-     * @return {bigint}
-     */
-    toBigInt() {
-        return BigInt(this._value)
-    }
-
-    /**
      *
      * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
+     * @return {Result&lt;string, UInt32>}
      */
-    addMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
+    static fromNumber(value) {
+        if (!Number.isInteger(value) || value &lt; 0 || value > 0xffffffff) {
+            return Result.typeError('expect unsigned integer 32 bits')
         }
-        let sum = this._value + value
-        let data = new Timespan(sum)
+        let data = new UInt32(value)
         return Result.ok(data)
     }
+}
 
+class UInt64 {
     /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
+     * @type {bigint}
      */
-    addSeconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 1000 * value
-        let sum = this._value + miliseconds
-        let data = new Timespan(sum)
-        return Result.ok(data)
+    get value() {
+        return this._value
     }
 
     /**
-     * Time period in seconds.
+     * **Tags:** NO_INPUT_VALIDATION.
      *
-     * @return {string}
+     * @param {bigint} value - Big, unsigned integer number, 64 bits.
      */
-    format() {
-        let miliseconds = this._value % 1000
-        let padMiliseconds = miliseconds.toString().padStart(3, '0')
-        let seconds = (this._value - miliseconds) / 1000
-        let oddSeconds = seconds % 60
-        let padSeconds = oddSeconds.toString().padStart(2, '0')
-        let minutes = (seconds - oddSeconds) / 60
-        let oddMinutes = minutes % 60
-        let padMinutes = oddMinutes.toString().padStart(2, '0')
-        let hours = (minutes - oddMinutes) / 60
-        let padHours = hours.toString().padStart(2, '0')
-        return `${padHours}:${padMinutes}:${padSeconds}.${padMiliseconds}`
+    constructor(value) {
+        this._value = value
+    }
+
+    /**
+     * If this number is less than `other` then return `true`.
+     *
+     * @param {UInt64} other
+     * @return {boolean}
+     * @throws {TypeError}
+     */
+    lt(other) {
+        validateInstance(other, UInt64).open()
+        return this._value &lt; other._value
+    }
+
+    /**
+     * If this number is greater than `other` then return `true.
+     *
+     * @param {UInt64} other
+     * @return {boolean}
+     * @throws {TypeError}
+     */
+    gt(other) {
+        validateInstance(other, UInt64).open()
+        return this._value > other._value
+    }
+
+    /**
+     * Return additional of this number and `addend`.
+     *
+     * @param {UInt64} addend
+     * @return {UInt64}
+     * @throws {TypeError}
+     */
+    add(addend) {
+        validateInstance(addend, UInt64).open()
+        let sum = this._value + addend._value
+        UInt64._validateOverflow(sum).open()
+        return new UInt64(sum)
     }
 
     /**
      *
-     * @param {number} value
-     * @return {Result&lt;string, Timespan>}
+     * @param {number} addend
+     * @return {UInt64}
+     * @throws {TypeError}
      */
-    static fromMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let data = new Timespan(value)
-        return Result.ok(data)
+    addNumber(addend) {
+        validateUInt(addend).open()
+        let sum = this._value + BigInt(addend)
+        UInt64._validateOverflow(sum).open()
+        return new UInt64(sum)
     }
 
     /**
-     * @param {number} value
-     * @return {Result&lt;string, Timespan>}
+     * @return {UInt64}
      */
-    static fromSeconds(value) {
-        let r1 = validateUInt(value)
+    clone() {
+        return new UInt64(this._value)
+    }
+
+    /**
+     *
+     * @param {bigint} value
+     * @return {Result&lt;string, UInt64>}
+     */
+    static fromBigInt(value) {
+        let r1 = validateInstance(value, 'bigint')
         if (r1.error) {
             return r1
         }
-        let miliseconds = 1000 * value
-        let r2 = validateUInt(value)
+        if (value &lt; 0) {
+            return Result.typeError('expect unsigned big integer')
+        }
+        let r2 = UInt64._validateOverflow(value)
         if (r2.error) {
             return r2
         }
-        let data = new Timespan(miliseconds)
+        let data = new UInt64(value)
         return Result.ok(data)
+    }
+
+    /**
+     *
+     * @return {Heximal}
+     */
+    toHeximal() {
+        return '0x' + this._value.toString(16)
     }
 
     /**
      *
      * @param {number} value
-     * @return {Result&lt;string, Timespan>}
+     * @return {Result&lt;string, UInt64>}
      */
-    static fromMinutes(value) {
+    static fromNumber(value) {
         let r1 = validateUInt(value)
         if (r1.error) {
             return r1
         }
-        let miliseconds = 60 * 1000 * value
-        let r2 = validateUInt(miliseconds)
-        if (r2.error) {
-            return r2
-        }
-        let data = new Timespan(miliseconds)
+        let bigint = BigInt(value)
+        let data = new UInt64(bigint)
         return Result.ok(data)
     }
 
     /**
      *
-     * @param {Timestamp} milestone
-     * @return {Result&lt;string, Timespan>}
+     * @param {Heximal} value
+     * @return {Result&lt;string, UInt16>}
      */
-    static elapsedTime(milestone) {
-        if ((milestone instanceof Timestamp) === false) {
-            return Result.typeError('expect a Timestamp')
+    static fromHeximal(value) {
+        let r1 = validateHeximal(value)
+        if (r1.error) {
+            return r1
         }
-        let now = Timestamp.now()
-        if (now.value &lt; milestone.value) {
-            return Result.typeError('milestone is in the future')
+        let [length] = inspectHeximal(value)
+        if (length > 16) {
+            return Result.typeError('heximal overflow 64 bits')
         }
-        let miliseconds = now.value - milestone.value
-        return Timespan.fromMiliseconds(miliseconds)
+        let number = BigInt(value)
+        let data = new UInt64(number)
+        return Result.ok(data)
+    }
+
+    /**
+     *
+     * @param {bigint} value
+     * @return {Result&lt;TypeError, undefined>}
+     */
+    static _validateOverflow(value) {
+        if (value > 0xffffffffffffffffn) {
+            return Result.typeError('overflow unsigned integer 64 bits')
+        }
+        return Result.ok()
+    }
+}
+
+/**
+ * Possitive integer number, 64 bits.
+ */
+class PInt64 {
+    /**
+     * Unsigned integer, 64 bits.
+     *
+     * @type {bigint}
+     */
+    get value() {
+        return this._value
+    }
+
+    /**
+     * **Tags:** NO_INPUT_VALIDATION.
+     *
+     * @param {bigint} value
+     */
+    constructor(value) {
+        this._value = value
+    }
+
+    /**
+     *
+     * @param {bigint} value
+     * @return {Result&lt;string, PInt64>}
+     */
+    static fromBigInt(value) {
+        if (
+            typeof(value) !== 'bigint' ||
+            value &lt;= 0
+        ) {
+            return Result.typeError('expect a big possitive integer')
+        }
+        if (value > 0xffffffffffffffffn) {
+            return Result.typeError('overflow possitive integer 64 bits')
+        }
+        let data = new PInt64(value)
+        return Result.ok(data)
+    }
+
+    /**
+     *
+     * @param {Heximal} value
+     * @return {Result&lt;TypeError, PInt64>}
+     */
+    static fromHeximal(value) {
+        let r1 = validateHeximal(value)
+        if (r1.error) {
+            return r1
+        }
+        let [length] = inspectHeximal(value)
+        if (length > 16) {
+            return Result.typeError('overflow heximal 64 bits')
+        }
+        let number = BigInt(value)
+        let data = new UInt64(number)
+        return Result.ok(data)
+    }
+}
+
+class Float64 {
+    /**
+     * @type {number}
+     */
+    get value() {
+        return this._value
+    }
+
+    /**
+     * **Tags:** NO_INPUT_VALIDATION.
+     *
+     * @param {number} value
+     */
+    constructor(value) {
+        this._value = value
+    }
+
+    /**
+     *
+     * @param {number} value
+     * @return {Result&lt;string, Float64>}
+     */
+    static fromNumber(value) {
+        if (typeof(value) !== 'number') {
+            return Result.typeError('expect a number')
+        }
+        if (value >= Infinity) {
+            return Result.typeError('overflow float number 64 bits')
+        }
+        let data = new Float64(value)
+        return Result.ok(data)
     }
 }
 
 module.exports = {
-    Timestamp,
-    Timespan
+    UInt,
+    UInt16,
+    UInt32,
+    UInt64,
+    PInt64,
+    Float64
 }
 </code></pre>
         </article>
