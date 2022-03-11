@@ -97,3 +97,30 @@ describe('DataSize.fromString', () => {
         assert.deepStrictEqual(expectedResult, actualResult)
     })
 })
+describe('DataSize.toNumber', () => {
+    it('0, return correct result', () => {
+        let n = new DataSize(0n)
+        let expectedResult = Result.ok(0)
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('1, return correct result', () => {
+        let n = new DataSize(1n)
+        let expectedResult = Result.ok(1)
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('Number.MAX_SAFE_INTEGER, return correct result', () => {
+        let n = new DataSize(9007199254740991n)
+        let expectedResult = Result.ok(9007199254740991)
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('greater than Number.MAX_SAFE_INTEGER, return error', () => {
+        let n = new DataSize(9007199254740992n)
+        let expectedError = new Error('overflow unsigned integer 53 bits')
+        let expectedResult = Result.error(expectedError)
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
