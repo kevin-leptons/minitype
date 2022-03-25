@@ -118,3 +118,19 @@ describe('UInt256.fromHeximal', () => {
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
+describe('UInt256.toDecimal', () => {
+    it('return correct result', () => {
+        let number = UInt256.fromNumber(13579).open()
+        let expectedResult = '13579'
+        let actualResult = number.toDecimal()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt256.toHeximal', () => {
+    it('return correct result', () => {
+        let number = UInt256.fromNumber(0x99ffaaee).open()
+        let expectedResult = '0x99ffaaee'
+        let actualResult = number.toHeximal()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
