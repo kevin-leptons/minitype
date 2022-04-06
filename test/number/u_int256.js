@@ -134,6 +134,20 @@ describe('UInt256.toHeximal', () => {
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
+describe('UInt256.isZero', () => {
+    it('zero, return true', () => {
+        let n = UInt256.fromNumber(0).open()
+        let actualResult = n.isZero()
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('one, return false', () => {
+        let n = UInt256.fromNumber(1).open()
+        let actualResult = n.isZero()
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
 describe('UInt256.eq', () => {
     it('number1 = number2, return true', () => {
         let number1 = UInt256.fromNumber(1379).open()
