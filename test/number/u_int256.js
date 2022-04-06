@@ -134,3 +134,72 @@ describe('UInt256.toHeximal', () => {
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
+describe('UInt256.eq', () => {
+    it('number1 = number2, return true', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return false', () => {
+        let number1 = UInt256.fromNumber(137).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return false', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(137).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt256.lt', () => {
+    it('number1 = number2, return false', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return true', () => {
+        let number1 = UInt256.fromNumber(137).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return false', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(137).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt256.gt', () => {
+    it('number1 = number2, return false', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return false', () => {
+        let number1 = UInt256.fromNumber(137).open()
+        let number2 = UInt256.fromNumber(1379).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return true', () => {
+        let number1 = UInt256.fromNumber(1379).open()
+        let number2 = UInt256.fromNumber(137).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
