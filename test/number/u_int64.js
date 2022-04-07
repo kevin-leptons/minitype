@@ -90,6 +90,30 @@ describe('UInt64.fromDecimal', () => {
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
+describe('UInt64.toNumber', () => {
+    it('minimum value, return correct result', () => {
+        let n = UInt64.fromNumber(0).open()
+        let expectedResult = 0
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('maximum value, return correct result', () => {
+        let n = UInt64.fromNumber(Number.MAX_SAFE_INTEGER).open()
+        let expectedResult = Number.MAX_SAFE_INTEGER
+        let actualResult = n.toNumber()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('overflow value, throw error', () => {
+        let n = UInt64.fromBigInt(0x20000000000000n).open()
+        assert.throws(
+            () => n.toNumber(),
+            {
+                constructor: Error,
+                message: 'overflow unsigned integer 53 bits'
+            }
+        )
+    })
+})
 describe('UInt64.fromHeximal', () => {
     it('min value, return ok', () => {
         let input = '0x1'
