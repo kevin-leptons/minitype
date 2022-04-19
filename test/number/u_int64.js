@@ -194,7 +194,7 @@ describe('UInt64.format*', () => {
 })
 describe('UInt64.fromBuffer', () => {
     it('minimum value, return correct result', () => {
-        let input = Buffer.from('0001', 'hex')
+        let input = Buffer.from('0000000000000001', 'hex')
         let expectedData = UInt64.fromHeximal('0x1').open()
         let expectedResult = Result.ok(expectedData)
         let actualResult = UInt64.fromBuffer(input)
@@ -207,34 +207,28 @@ describe('UInt64.fromBuffer', () => {
         let actualResult = UInt64.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
-    it('partial bytes, return correct result', () => {
-        let input = Buffer.from('ff', 'hex')
-        let expectedData = UInt64.fromHeximal('0xff').open()
-        let expectedResult = Result.ok(expectedData)
-        let actualResult = UInt64.fromBuffer(input)
-        assert.deepStrictEqual(actualResult, expectedResult)
-    })
-    it('one zero bytes, return error', () => {
-        let input = Buffer.from('00', 'hex')
-        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
-        let actualResult = UInt64.fromBuffer(input)
-        assert.deepStrictEqual(actualResult, expectedResult)
-    })
-    it('all zero bytes, return error', () => {
+    it('all zero bytes, return correct result', () => {
         let input = Buffer.from('0000000000000000', 'hex')
-        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
+        let expectedData = UInt64.fromHeximal('0x0000000000000000').open()
+        let expectedResult = Result.ok(expectedData)
         let actualResult = UInt64.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
     it('no bytes, return error', () => {
         let input = Buffer.from([])
-        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let actualResult = UInt64.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('not enough data, return error', () => {
+        let input = Buffer.from('ff', 'hex')
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
         let actualResult = UInt64.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
     it('overflow, return error', () => {
         let input = Buffer.from('010000000000000000', 'hex')
-        let expectedResult = Result.typeError('overflow buffer 8 bytes')
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
         let actualResult = UInt64.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
