@@ -1,5 +1,7 @@
 'use strict'
 
+/* eslint-disable max-lines-per-function */
+
 const assert = require('assert')
 const {heximalToBuffer} = require('../../lib/formatter')
 const {Result} = require('../../lib')

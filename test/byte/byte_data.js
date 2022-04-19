@@ -1,5 +1,7 @@
 'use strict'
 
+/* eslint-disable max-lines-per-function */
+
 const assert = require('assert')
 const {ByteData} = require('../../lib/byte')
 const {Result} = require('../../lib')
