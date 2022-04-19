@@ -1,6 +1,7 @@
 'use strict'
 
 /* eslint-disable max-len */
+/* eslint-disable max-lines-per-function */
 
 const assert = require('assert')
 const {Result, UInt16} = require('../../lib')
@@ -86,6 +87,53 @@ describe('UInt16.fromHeximal', () => {
         let input = '0xK'
         let expectedResult = Result.typeError('expect a heximal')
         let actualResult = UInt16.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt16.fromBuffer', () => {
+    it('minimum value, return correct result', () => {
+        let input = Buffer.from('0001', 'hex')
+        let expectedData = UInt16.fromHeximal('0x1').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('maximum value, return correct result', () => {
+        let input = Buffer.from('ffff', 'hex')
+        let expectedData = UInt16.fromHeximal('0xffff').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('partial bytes, return correct result', () => {
+        let input = Buffer.from('ff', 'hex')
+        let expectedData = UInt16.fromHeximal('0xff').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('one zero bytes, return error', () => {
+        let input = Buffer.from('00', 'hex')
+        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('all zero bytes, return error', () => {
+        let input = Buffer.from('0000', 'hex')
+        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('no bytes, return error', () => {
+        let input = Buffer.from([])
+        let expectedResult = Result.typeError('expect buffer as unsigned integer number')
+        let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('overflow, return error', () => {
+        let input = Buffer.from('010000', 'hex')
+        let expectedResult = Result.typeError('overflow buffer 2 bytes')
+        let actualResult = UInt16.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
