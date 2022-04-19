@@ -83,9 +83,15 @@ describe('UInt16.fromHeximal', () => {
         let actualResult = UInt16.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
-    it('not a heximal, return error', () => {
-        let input = '0xK'
-        let expectedResult = Result.typeError('expect a heximal')
+    it('0x, return error', () => {
+        let input = '0x'
+        let expectedResult = Result.typeError('expect Heximal')
+        let actualResult = UInt16.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('0xZ a heximal, return error', () => {
+        let input = '0xZ'
+        let expectedResult = Result.typeError('expect Heximal')
         let actualResult = UInt16.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })

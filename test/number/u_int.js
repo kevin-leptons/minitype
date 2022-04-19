@@ -84,7 +84,7 @@ describe('UInt.fromHeximal', () => {
     })
     it('not a heximal, return error', () => {
         let input = '0xK'
-        let expectedResult = Result.typeError('expect a heximal')
+        let expectedResult = Result.typeError('expect Heximal')
         let actualResult = UInt.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })

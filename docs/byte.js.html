@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Float64 - Documentation</title>
+    <title>byte.js - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,417 +34,118 @@
 
 <div id="main">
     
-    <h1 class="page-title">Float64</h1>
-    
-
-    
-
-
-
-
-<section>
-
-<header>
-    
-        <h2>
-        Float64
-        </h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-
-    <h4 class="name" id="Float64"><span class="type-signature"></span>new Float64<span class="signature">(value)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line1401">line 1401</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p><strong>Tags:</strong> NO_INPUT_VALIDATION.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="value"><span class="type-signature"></span>value<span class="type-signature"> :number</span></h4>
-
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line1392">line 1392</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-    <h5>Type:</h5>
-    <ul>
-        <li>
-            
-<span class="param-type">number</span>
-
-
-        </li>
-    </ul>
-
-
-
-
-
-
-        
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    <h4 class="name" id=".fromNumber"><span class="type-signature">(static) </span>fromNumber<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TypeError, <a href="Float64.html">Float64</a>>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line1410">line 1410</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Result.html">Result</a>.&lt;TypeError, <a href="Float64.html">Float64</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-    
-
-    
-
-    
-</article>
-
-</section>
+    <h1 class="page-title">byte.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use srict'
+
+const {Result} = require('./result')
+const {validateInstance} = require('./validator')
+const {heximalToBuffer} = require('./formatter')
+
+/**
+ * Array of bytes as a buffer.
+ */
+ class ByteData {
+    /**
+     * @type {Buffer}
+     */
+    get value() {
+        return this._value
+    }
+
+    /**
+     *
+     * @param {Buffer} value
+     */
+    constructor(value) {
+        this._value = value
+    }
+
+    /**
+     * @param {Buffer} value
+     * @return {Result&lt;TypeError, ByteData>}
+     */
+    static fromBuffer(value) {
+        let r1 = validateInstance(value, Buffer)
+        if (r1.error) {
+            return r1
+        }
+        let instance = new ByteData(value)
+        return Result.ok(instance)
+    }
+
+    /**
+     *
+     * @param {Heximal} value
+     * @return {Result&lt;TyperError, ByteData>}
+     */
+    static fromHeximal(value) {
+        let r1 = heximalToBuffer(value)
+        if (r1.error) {
+            return r1
+        }
+        let instance = new ByteData(r1.data)
+        return Result.ok(instance)
+    }
+
+    /**
+     *
+     * @param {ByteData} target
+     * @return {boolean}
+     */
+    eq(target) {
+        validateInstance(target, ByteData).open()
+        return (this._value.compare(target.value) === 0)
+    }
+
+    /**
+     *
+     * @param {ByteData} target
+     * @return {boolean}
+     */
+    lt(target) {
+        validateInstance(target, ByteData).open()
+        if (this._value.length &lt; target._value.length) {
+            return true
+        }
+        if (this._value.length > target._value.length) {
+            return false
+        }
+        return (this._value.compare(target.value) === -1)
+    }
+
+    /**
+     *
+     * @param {ByteData} target
+     * @return {boolean}
+     */
+    gt(target) {
+        validateInstance(target, ByteData).open()
+        if (this._value.length > target._value.length) {
+            return true
+        }
+        if (this._value.length &lt; target._value.length) {
+            return false
+        }
+        return (this._value.compare(target.value) === 1)
+    }
+
+}
+
+module.exports = {
+    ByteData
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

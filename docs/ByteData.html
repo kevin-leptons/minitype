@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>UInt - Documentation</title>
+    <title>ByteData - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,7 +34,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">UInt</h1>
+    <h1 class="page-title">ByteData</h1>
     
 
     
@@ -47,10 +47,10 @@
 <header>
     
         <h2>
-        UInt
+        ByteData
         </h2>
         
-            <div class="class-description usertext"><p>Unsigned integer number, 53 bits.</p></div>
+            <div class="class-description usertext"><p>Array of bytes as a buffer.</p></div>
         
     
 </header>
@@ -65,7 +65,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="UInt"><span class="type-signature"></span>new UInt<span class="signature">(value)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ByteData"><span class="type-signature"></span>new ByteData<span class="signature">(value)</span><span class="type-signature"></span></h4>
 
     
 
@@ -77,7 +77,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line115">line 115</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -115,11 +115,6 @@
 
 
 
-
-<div class="description usertext">
-    <p>Initialize by <a href="UInt.html#.fromNumber">UInt.fromNumber</a>, <a href="UInt.html#.fromDecimal">UInt.fromDecimal</a>,
-<a href="UInt.html#.fromHeximal">UInt.fromHeximal</a>.</p>
-</div>
 
 
 
@@ -162,7 +157,7 @@
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type">Buffer</span>
 
 
             
@@ -218,7 +213,7 @@
 
         
             
-<h4 class="name" id="value"><span class="type-signature"></span>value<span class="type-signature"> :number</span></h4>
+<h4 class="name" id="value"><span class="type-signature"></span>value<span class="type-signature"> :Buffer</span></h4>
 
 
 
@@ -229,7 +224,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line119">line 119</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -274,7 +269,7 @@
     <ul>
         <li>
             
-<span class="param-type">number</span>
+<span class="param-type">Buffer</span>
 
 
         </li>
@@ -296,7 +291,7 @@
 
     
 
-    <h4 class="name" id=".fromDecimal"><span class="type-signature">(static) </span>fromDecimal<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TypeError, <a href="UInt.html">UInt</a>>}</span></h4>
+    <h4 class="name" id=".fromBuffer"><span class="type-signature">(static) </span>fromBuffer<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TypeError, <a href="ByteData.html">ByteData</a>>}</span></h4>
 
     
 
@@ -308,7 +303,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line152">line 152</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -388,7 +383,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Decimal">Decimal</a></span>
+<span class="param-type">Buffer</span>
 
 
             
@@ -431,7 +426,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Result.html">Result</a>.&lt;TypeError, <a href="UInt.html">UInt</a>></span>
+<span class="param-type"><a href="Result.html">Result</a>.&lt;TypeError, <a href="ByteData.html">ByteData</a>></span>
 
 
     </dd>
@@ -446,7 +441,7 @@
 
     
 
-    <h4 class="name" id=".fromHeximal"><span class="type-signature">(static) </span>fromHeximal<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;<a href="UInt.html">UInt</a>>}</span></h4>
+    <h4 class="name" id=".fromHeximal"><span class="type-signature">(static) </span>fromHeximal<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TyperError, <a href="ByteData.html">ByteData</a>>}</span></h4>
 
     
 
@@ -458,7 +453,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line167">line 167</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line44">line 44</a>
     </li></ul></dd>
     
 
@@ -496,10 +491,6 @@
 
 
 
-
-<div class="description usertext">
-    <p>53 bits all set heximal: <code>0x1fffffffffffff</code>.</p>
-</div>
 
 
 
@@ -585,7 +576,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Result.html">Result</a>.&lt;<a href="UInt.html">UInt</a>></span>
+<span class="param-type"><a href="Result.html">Result</a>.&lt;TyperError, <a href="ByteData.html">ByteData</a>></span>
 
 
     </dd>
@@ -600,7 +591,7 @@
 
     
 
-    <h4 class="name" id=".fromNumber"><span class="type-signature">(static) </span>fromNumber<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TypeError, <a href="UInt.html">UInt</a>>}</span></h4>
+    <h4 class="name" id="eq"><span class="type-signature"></span>eq<span class="signature">(target)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -612,7 +603,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line138">line 138</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -686,13 +677,13 @@
 
         <tr>
             
-                <td class="name"><code>value</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">number</span>
+<span class="param-type"><a href="ByteData.html">ByteData</a></span>
 
 
             
@@ -722,501 +713,6 @@
 
 
 
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="Result.html">Result</a>.&lt;TypeError, <a href="UInt.html">UInt</a>></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(addend)</span><span class="type-signature"> &rarr; {<a href="UInt.html">UInt</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line182">line 182</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>addend</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="div"><span class="type-signature"></span>div<span class="signature">(divisor)</span><span class="type-signature"> &rarr; {<a href="UInt.html">UInt</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line221">line 221</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>divisor</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="eq"><span class="type-signature"></span>eq<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line237">line 237</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>other</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
 
 
 <h5>Returns:</h5>
@@ -1245,7 +741,7 @@
 
     
 
-    <h4 class="name" id="format"><span class="type-signature"></span>format<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="gt"><span class="type-signature"></span>gt<span class="signature">(target)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -1257,952 +753,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line291">line 291</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER">FORMATTER</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format2"><span class="type-signature"></span>format2<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line300">line 300</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_2">FORMATTER_2</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format3"><span class="type-signature"></span>format3<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line309">line 309</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_3">FORMATTER_3</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format4"><span class="type-signature"></span>format4<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line318">line 318</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_4">FORMATTER_4</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format5"><span class="type-signature"></span>format5<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line327">line 327</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_5">FORMATTER_5</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format6"><span class="type-signature"></span>format6<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line336">line 336</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_6">FORMATTER_6</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format7"><span class="type-signature"></span>format7<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line345">line 345</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_7">FORMATTER_7</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format8"><span class="type-signature"></span>format8<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line354">line 354</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_8">FORMATTER_8</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="format9"><span class="type-signature"></span>format9<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line363">line 363</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>See <a href="global.html#FORMATTER_9">FORMATTER_9</a> for more details.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">string</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="gt"><span class="type-signature"></span>gt<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line270">line 270</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -2276,13 +827,13 @@
 
         <tr>
             
-                <td class="name"><code>other</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="UInt.html">UInt</a></span>
+<span class="param-type"><a href="ByteData.html">ByteData</a></span>
 
 
             
@@ -2312,21 +863,6 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
 
 
 <h5>Returns:</h5>
@@ -2355,7 +891,7 @@
 
     
 
-    <h4 class="name" id="gte"><span class="type-signature"></span>gte<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="lt"><span class="type-signature"></span>lt<span class="signature">(target)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -2367,7 +903,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line281">line 281</a>
+        <a href="byte.js.html">byte.js</a>, <a href="byte.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -2441,13 +977,13 @@
 
         <tr>
             
-                <td class="name"><code>other</code></td>
+                <td class="name"><code>target</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="UInt.html">UInt</a></span>
+<span class="param-type"><a href="ByteData.html">ByteData</a></span>
 
 
             
@@ -2477,21 +1013,6 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
 
 
 <h5>Returns:</h5>
@@ -2506,666 +1027,6 @@
     <dd>
         
 <span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="lt"><span class="type-signature"></span>lt<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line248">line 248</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>other</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="lte"><span class="type-signature"></span>lte<span class="signature">(other)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line259">line 259</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>other</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">boolean</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="mul"><span class="type-signature"></span>mul<span class="signature">(multiplicand)</span><span class="type-signature"> &rarr; {<a href="UInt.html">UInt</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line208">line 208</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>multiplicand</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="sub"><span class="type-signature"></span>sub<span class="signature">(subtrahend)</span><span class="type-signature"> &rarr; {<a href="UInt.html">UInt</a>}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="number.js.html">number.js</a>, <a href="number.js.html#line195">line 195</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>subtrahend</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="UInt.html">UInt</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-    <div class="param-desc usertext">
-    
-        
-<span class="param-type">TypeError</span>
-
-
-    
-    </div>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="UInt.html">UInt</a></span>
 
 
     </dd>
