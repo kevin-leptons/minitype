@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>time.js - Documentation</title>
+    <title>HttpEndpoint - Documentation</title>
     
     
     <script src="scripts/prettify/prettify.js"></script>
@@ -34,328 +34,413 @@
 
 <div id="main">
     
-    <h1 class="page-title">time.js</h1>
+    <h1 class="page-title">HttpEndpoint</h1>
     
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict'
+        <h2>
+        HttpEndpoint
+        </h2>
+        
+    
+</header>
 
-const {Result} = require('./result')
-const {Heximal} = require('./string')
-const {validateUInt, validateInstance} = require('./validator')
-const {heximalToUInt} = require('./formatter')
+<article>
+    
+        <div class="container-overview">
+        
+            
 
-class Timestamp {
-    /**
-     * Unix timestamp in miliseconds.
-     *
-     * @type {number}
-     */
-    get value() {
-        return this._value
-    }
+    
 
-    /**
-     * **Tags:** NO_INPUT_VALIDATION.
-     *
-     * @param {number} value - Unix timestamp in miliseconds, unsigned
-     * integer number, 53 bits.
-     */
-    constructor(value) {
-        this._value = value
-    }
+    <h4 class="name" id="HttpEndpoint"><span class="type-signature"></span>new HttpEndpoint<span class="signature">(url)</span><span class="type-signature"></span></h4>
 
-    /**
-     * @return {number} Unix timestamp in seconds.
-     */
-    toSeconds() {
-        return Math.floor(this._value / 1000)
-    }
+    
 
-    /**
-     *
-     * @param {Timestamp} other
-     * @return {boolean}
-     * @throws {TypeError}
-     */
-    lt(other) {
-        validateInstance(other, Timestamp).open()
-        return this._value &lt; other._value
-    }
 
-    /**
-     *
-     * @param {Timestamp} other
-     * @return {boolean}
-     * @throws {TypeError}
-     */
-    gt(other) {
-        validateInstance(other, Timestamp).open()
-        return this._value > other._value
-    }
 
-    /**
-     *
-     * @param {Timespan} timespan
-     * @return {Timestamp}
-     * @throws {TypeError}
-     */
-    add(timespan) {
-        validateInstance(timespan, Timespan).open()
-        let miliseconds = this._value + timespan.value
-        return new Timestamp(miliseconds)
-    }
 
-    /**
-     * @return {boolean}
-     */
-    isFuture() {
-        return this._value > Date.now()
-    }
+<dl class="details">
 
-    /**
-     * @return {boolean}
-     */
-    isPast() {
-        return this._value &lt; Date.now()
-    }
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="uri.js.html">uri.js</a>, <a href="uri.js.html#line17">line 17</a>
+    </li></ul></dd>
+    
 
-    /**
-     *
-     * @return {boolean}
-     */
-    isPresentOrPast() {
-        return this._value &lt;= Date.now()
-    }
+    
 
-    /**
-     * Make a timestamp that points to current time.
-     *
-     * @return {Timestamp}
-     */
-    static now() {
-        let miliseconds = Date.now()
-        return new Timestamp(miliseconds)
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timestamp>}
-     */
-    static fromMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let instance = new Timestamp(value)
-        return Result.ok(instance)
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timestamp>}
-     */
-    static fromSeconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 1000 * value
-        let r2 = validateUInt(miliseconds)
-        if (r2.error) {
-            return r2
-        }
-        let instance = new Timestamp(miliseconds)
-        return Result.ok(instance)
-    }
+    
 
-    /**
-     *
-     * @param {Heximal} value
-     * @return {Result&lt;TypeError, Timestamp>}
-     */
-    static fromHeximalSeconds(value) {
-        let r1 = heximalToUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let {data: seconds} = r1
-        let miliseconds = 1000 * seconds
-        let instance = new Timestamp(miliseconds)
-        return Result.ok(instance)
-    }
-}
+    
 
-class Timespan {
-    /**
-     * Timespan in miliseconds.
-     *
-     * @type {number}
-     */
-    get value() {
-        return this._value
-    }
+    
 
-    /**
-     * **Tags:** NO_INPUT_VALIDATION.
-     *
-     * @param {value} value - Timespan in miliseconds, unsigned
-     * integer number, 53 bits.
-     */
-    constructor(value) {
-        this._value = value
-    }
+    
 
-    /**
-     * @return {bigint}
-     */
-    toBigInt() {
-        return BigInt(this._value)
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    addMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let sum = this._value + value
-        let data = new Timespan(sum)
-        return Result.ok(data)
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    addSeconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 1000 * value
-        let sum = this._value + miliseconds
-        let data = new Timespan(sum)
-        return Result.ok(data)
-    }
+    
 
-    /**
-     *
-     * @return {Timespan}
-     */
-    clone() {
-        return new Timespan(this._value)
-    }
+    
 
-    /**
-     * Time period in seconds.
-     *
-     * @return {string}
-     */
-    format() {
-        let miliseconds = this._value % 1000
-        let padMiliseconds = miliseconds.toString().padStart(3, '0')
-        let seconds = (this._value - miliseconds) / 1000
-        let oddSeconds = seconds % 60
-        let padSeconds = oddSeconds.toString().padStart(2, '0')
-        let minutes = (seconds - oddSeconds) / 60
-        let oddMinutes = minutes % 60
-        let padMinutes = oddMinutes.toString().padStart(2, '0')
-        let hours = (minutes - oddMinutes) / 60
-        let padHours = hours.toString().padStart(2, '0')
-        return `${padHours}:${padMinutes}:${padSeconds}.${padMiliseconds}`
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    static fromMiliseconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let data = new Timespan(value)
-        return Result.ok(data)
-    }
+    
 
-    /**
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    static fromSeconds(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 1000 * value
-        let r2 = validateUInt(value)
-        if (r2.error) {
-            return r2
-        }
-        let data = new Timespan(miliseconds)
-        return Result.ok(data)
-    }
+    
 
-    /**
-     *
-     * @param {number} value
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    static fromMinutes(value) {
-        let r1 = validateUInt(value)
-        if (r1.error) {
-            return r1
-        }
-        let miliseconds = 60 * 1000 * value
-        let r2 = validateUInt(miliseconds)
-        if (r2.error) {
-            return r2
-        }
-        let data = new Timespan(miliseconds)
-        return Result.ok(data)
-    }
+    
+</dl>
 
-    /**
-     *
-     * @param {Timestamp} milestone
-     * @return {Result&lt;TypeError, Timespan>}
-     */
-    static elapsedTime(milestone) {
-        let r1 = validateInstance(milestone, Timestamp)
-        if (r1.error) {
-            return r1.error
-        }
-        let now = Timestamp.now()
-        if (now._value &lt; milestone._value) {
-            return Result.typeError('milestone is in the future')
-        }
-        let miliseconds = now._value - milestone._value
-        return Timespan.fromMiliseconds(miliseconds)
-    }
-}
 
-module.exports = {
-    Timestamp,
-    Timespan
-}
-</code></pre>
-        </article>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">URL</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="url"><span class="type-signature"></span>url<span class="type-signature"> :URL</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="uri.js.html">uri.js</a>, <a href="uri.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">URL</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fromString"><span class="type-signature">(static) </span>fromString<span class="signature">(value)</span><span class="type-signature"> &rarr; {<a href="Result.html">Result</a>.&lt;TypeError, <a href="HttpEndpoint.html">HttpEndpoint</a>>}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="uri.js.html">uri.js</a>, <a href="uri.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>value</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="Result.html">Result</a>.&lt;TypeError, <a href="HttpEndpoint.html">HttpEndpoint</a>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
