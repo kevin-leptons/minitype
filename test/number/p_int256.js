@@ -123,6 +123,13 @@ describe('PInt256.fromHeximal', () => {
         let actualResult = PInt256.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new PInt256(0x0112n)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = PInt256.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
     it('zero, return error', () => {
         let input = '0x0'
         let expectedResult = Result.typeError('expect a positive integer from heximal')

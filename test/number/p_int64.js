@@ -105,6 +105,13 @@ describe('PInt64.fromHeximal', () => {
         let actualResult = PInt64.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new PInt64(0x0112n)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = PInt64.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
     it('overflow, return error', () => {
         let input = '0x10000000000000000'
         let expectedResult = Result.typeError('overflow heximal 64 bits')

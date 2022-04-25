@@ -77,6 +77,13 @@ describe('UInt32.fromHeximal', () => {
         let actualResult = UInt32.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new UInt32(0x0112)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt32.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
     it('overflow, return error', () => {
         let input = '0x100000000'
         let expectedResult = Result.typeError('overflow heximal 32 bits')

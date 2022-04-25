@@ -129,6 +129,13 @@ describe('UInt64.fromHeximal', () => {
         let actualResult = UInt64.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new UInt64(0x0112n)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt64.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
     it('overflow, return error', () => {
         let input = '0x10000000000000000'
         let expectedResult = Result.typeError('overflow heximal 64 bits')
@@ -194,7 +201,7 @@ describe('UInt64.format*', () => {
 })
 describe('UInt64.fromBuffer', () => {
     it('minimum value, return correct result', () => {
-        let input = Buffer.from('0000000000000001', 'hex')
+        let input = Buffer.from('01', 'hex')
         let expectedData = UInt64.fromHeximal('0x1').open()
         let expectedResult = Result.ok(expectedData)
         let actualResult = UInt64.fromBuffer(input)
@@ -216,20 +223,55 @@ describe('UInt64.fromBuffer', () => {
     })
     it('no bytes, return error', () => {
         let input = Buffer.from([])
-        let expectedResult = Result.typeError('expect buffer 8 bytes')
-        let actualResult = UInt64.fromBuffer(input)
-        assert.deepStrictEqual(actualResult, expectedResult)
-    })
-    it('not enough data, return error', () => {
-        let input = Buffer.from('ff', 'hex')
-        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let expectedResult = Result.typeError('expect buffer 1-8 bytes')
         let actualResult = UInt64.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
     it('overflow, return error', () => {
         let input = Buffer.from('010000000000000000', 'hex')
-        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let expectedResult = Result.typeError('expect buffer 1-8 bytes')
         let actualResult = UInt64.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt64.fromFixedBuffer', () => {
+    it('minimum value, return correct result', () => {
+        let input = Buffer.from('0000000000000001', 'hex')
+        let expectedData = UInt64.fromHeximal('0x1').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt64.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('maximum value, return correct result', () => {
+        let input = Buffer.from('ffffffffffffffff', 'hex')
+        let expectedData = UInt64.fromHeximal('0xffffffffffffffff').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt64.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('all zero bytes, return correct result', () => {
+        let input = Buffer.from('0000000000000000', 'hex')
+        let expectedData = UInt64.fromHeximal('0x0000000000000000').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt64.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('no bytes, return error', () => {
+        let input = Buffer.from([])
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let actualResult = UInt64.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('not enough data, return error', () => {
+        let input = Buffer.from('ff', 'hex')
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let actualResult = UInt64.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('overflow, return error', () => {
+        let input = Buffer.from('010000000000000000', 'hex')
+        let expectedResult = Result.typeError('expect buffer 8 bytes')
+        let actualResult = UInt64.fromFixedBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })

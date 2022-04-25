@@ -1,6 +1,7 @@
 'use strict'
 
 /* eslint-disable max-len */
+/* eslint-disable max-lines-per-function */
 
 const assert = require('assert')
 const {Result, UInt} = require('../../lib')
@@ -72,6 +73,13 @@ describe('UInt.fromHeximal', () => {
     it('max value, return ok', () => {
         let input = '0x1fffffffffffff'
         let expectedData = new UInt(0x1fffffffffffff)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new UInt(0x0112)
         let expectedResult = Result.ok(expectedData)
         let actualResult = UInt.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)

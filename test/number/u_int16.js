@@ -77,6 +77,13 @@ describe('UInt16.fromHeximal', () => {
         let actualResult = UInt16.fromHeximal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('odd quantity digits, return ok', () => {
+        let input = '0x112'
+        let expectedData = new UInt16(0x0112)
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromHeximal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
     it('overflow, return error', () => {
         let input = '0x10000'
         let expectedResult = Result.typeError('overflow heximal 16 bits')
@@ -120,20 +127,55 @@ describe('UInt16.fromBuffer', () => {
     })
     it('no bytes, return error', () => {
         let input = Buffer.from([])
-        let expectedResult = Result.typeError('expect buffer 2 bytes')
-        let actualResult = UInt16.fromBuffer(input)
-        assert.deepStrictEqual(actualResult, expectedResult)
-    })
-    it('not enough data, return error', () => {
-        let input = Buffer.from('00', 'hex')
-        let expectedResult = Result.typeError('expect buffer 2 bytes')
+        let expectedResult = Result.typeError('expect buffer 1-2 bytes')
         let actualResult = UInt16.fromBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
     it('overflow, return error', () => {
         let input = Buffer.from('010000', 'hex')
-        let expectedResult = Result.typeError('expect buffer 2 bytes')
+        let expectedResult = Result.typeError('expect buffer 1-2 bytes')
         let actualResult = UInt16.fromBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt16.fromFixedBuffer', () => {
+    it('minimum value, return correct result', () => {
+        let input = Buffer.from('0001', 'hex')
+        let expectedData = UInt16.fromHeximal('0x1').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('maximum value, return correct result', () => {
+        let input = Buffer.from('ffff', 'hex')
+        let expectedData = UInt16.fromHeximal('0xffff').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('all zero bytes, return correct result', () => {
+        let input = Buffer.from('0000', 'hex')
+        let expectedData = UInt16.fromHeximal('0x0000').open()
+        let expectedResult = Result.ok(expectedData)
+        let actualResult = UInt16.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('no bytes, return error', () => {
+        let input = Buffer.from([])
+        let expectedResult = Result.typeError('expect buffer 2 bytes')
+        let actualResult = UInt16.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('not enough data, return error', () => {
+        let input = Buffer.from('00', 'hex')
+        let expectedResult = Result.typeError('expect buffer 2 bytes')
+        let actualResult = UInt16.fromFixedBuffer(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('overflow, return error', () => {
+        let input = Buffer.from('010000', 'hex')
+        let expectedResult = Result.typeError('expect buffer 2 bytes')
+        let actualResult = UInt16.fromFixedBuffer(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
