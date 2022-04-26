@@ -1,6 +1,6 @@
 {
   "name": "minitype",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "Essential, extensible Javascript types",
   "engines": {
     "node": "14"
