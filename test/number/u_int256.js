@@ -167,6 +167,17 @@ describe('UInt256.add', () => {
             }
         )
     })
+    it('overflow result, throw error', () => {
+        let number = UInt256.fromHeximal('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff').open()
+        let other = UInt256.fromNumber(1).open()
+        assert.throws(
+            () => number.add(other),
+            {
+                constructor: RangeError,
+                message: 'overflow result'
+            }
+        )
+    })
     it('valid input, return correct result', () => {
         let number = UInt256.fromNumber(1379).open()
         let other = UInt256.fromNumber(11).open()
