@@ -155,6 +155,64 @@ describe('UInt256.isZero', () => {
         assert.strictEqual(actualResult, expectedResult)
     })
 })
+describe('UInt256.add', () => {
+    it('input is not a UInt256, throw error', () => {
+        let number = UInt256.fromNumber(1379).open()
+        let other = undefined
+        assert.throws(
+            () => number.add(other),
+            {
+                constructor: TypeError,
+                message: 'expect UInt256'
+            }
+        )
+    })
+    it('valid input, return correct result', () => {
+        let number = UInt256.fromNumber(1379).open()
+        let other = UInt256.fromNumber(11).open()
+        let actualResult = number.add(other)
+        let expectedResult = UInt256.fromNumber(1390).open()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt256.sub', () => {
+    it('input is not a UInt256, throw error', () => {
+        let number = UInt256.fromNumber(1379).open()
+        let other = undefined
+        assert.throws(
+            () => number.sub(other),
+            {
+                constructor: TypeError,
+                message: 'expect UInt256'
+            }
+        )
+    })
+    it('negative result, throw error', () => {
+        let number = UInt256.fromNumber(137).open()
+        let other = UInt256.fromNumber(138).open()
+        assert.throws(
+            () => number.sub(other),
+            {
+                constructor: RangeError,
+                message: 'expect unsigned result'
+            }
+        )
+    })
+    it('return zero number', () => {
+        let number = UInt256.fromNumber(137).open()
+        let other = UInt256.fromNumber(137).open()
+        let actualResult = number.sub(other)
+        let expectedResult = UInt256.fromNumber(0).open()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('return positive number', () => {
+        let number = UInt256.fromNumber(137).open()
+        let other = UInt256.fromNumber(136).open()
+        let actualResult = number.sub(other)
+        let expectedResult = UInt256.fromNumber(1).open()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
 describe('UInt256.eq', () => {
     it('number1 = number2, return true', () => {
         let number1 = UInt256.fromNumber(1379).open()
