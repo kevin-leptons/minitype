@@ -149,6 +149,75 @@ describe('PInt256.fromHeximal', () => {
         assert.deepStrictEqual(actualResult, expectedResult)
     })
 })
+describe('PInt256.eq', () => {
+    it('number1 = number2, return true', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return false', () => {
+        let number1 = PInt256.fromNumber(137).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return false', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(137).open()
+        let actualResult = number1.eq(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
+describe('PInt256.lt', () => {
+    it('number1 = number2, return false', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return true', () => {
+        let number1 = PInt256.fromNumber(137).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return false', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(137).open()
+        let actualResult = number1.lt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
+describe('PInt256.gt', () => {
+    it('number1 = number2, return false', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 < number2, return false', () => {
+        let number1 = PInt256.fromNumber(137).open()
+        let number2 = PInt256.fromNumber(1379).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = false
+        assert.strictEqual(actualResult, expectedResult)
+    })
+    it('number1 > number2, return true', () => {
+        let number1 = PInt256.fromNumber(1379).open()
+        let number2 = PInt256.fromNumber(137).open()
+        let actualResult = number1.gt(number2)
+        let expectedResult = true
+        assert.strictEqual(actualResult, expectedResult)
+    })
+})
 describe('PInt256.toDecimal', () => {
     it('return correct result', () => {
         let number = PInt256.fromNumber(13579).open()
