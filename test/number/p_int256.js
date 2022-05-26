@@ -107,6 +107,18 @@ describe('PInt256.fromDecimal', () => {
         let actualResult = PInt256.fromDecimal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('spaces string, return error', () => {
+        let input = '   '
+        let expectedResult = Result.typeError('expect a positive integer from decimal')
+        let actualResult = PInt256.fromDecimal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('a number, return error', () => {
+        let input = 0x125
+        let expectedResult = Result.typeError('expect type string')
+        let actualResult = PInt256.fromDecimal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
 })
 describe('PInt256.fromHeximal', () => {
     it('minimum value, return ok', () => {

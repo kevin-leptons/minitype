@@ -89,6 +89,18 @@ describe('UInt64.fromDecimal', () => {
         let actualResult = UInt64.fromDecimal(input)
         assert.deepStrictEqual(actualResult, expectedResult)
     })
+    it('spaces string, return error', () => {
+        let input = '    '
+        let expectedResult = Result.typeError('expect a unsigned integer from decimal')
+        let actualResult = UInt64.fromDecimal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+    it('a number, return error', () => {
+        let input = 0x998
+        let expectedResult = Result.typeError('expect type string')
+        let actualResult = UInt64.fromDecimal(input)
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
 })
 describe('UInt64.toNumber', () => {
     it('minimum value, return correct result', () => {
