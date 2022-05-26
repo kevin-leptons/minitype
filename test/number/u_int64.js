@@ -114,6 +114,22 @@ describe('UInt64.toNumber', () => {
         )
     })
 })
+describe('UInt64.toDecimal', () => {
+    it('return correct result', () => {
+        let number = UInt64.fromNumber(0x143).open()
+        let expectedResult = '323'
+        let actualResult = number.toDecimal()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
+describe('UInt64.toHeximal', () => {
+    it('return correct result', () => {
+        let number = UInt64.fromNumber(0x99ffaaee).open()
+        let expectedResult = '0x99ffaaee'
+        let actualResult = number.toHeximal()
+        assert.deepStrictEqual(actualResult, expectedResult)
+    })
+})
 describe('UInt64.fromHeximal', () => {
     it('min value, return ok', () => {
         let input = '0x1'
